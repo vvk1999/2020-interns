@@ -4,7 +4,7 @@ f = open("data.json")
 data = json.load(f)
 
 
-currency = 'INR'
+currency = 'GBP'
 start_date = '2019-01-01'
 end_date = '2019-01-31'
 
@@ -25,8 +25,26 @@ for date in sorted(data['rates']):
 
 
 
-unit = 0.1
-scale = 1
+units = 100
+n = 0
+j = 1
+while(n <= units):
+    n =min_rate*0.1*j
+    j += 1
+print(j)
+#units = 30
+
+print("graph of "+currency+" exchange rate against EUR from "+start_date+" to "+end_date)
+print("-"*100+">")
+
+for date in sorted(data['rates']):
+    if start_date <=  date and end_date >=  date :
+        rate = float(data['rates'][date][currency])
+        if rate !=  0 :
+            print(date+" |"+"▇"*int((rate-min_rate*0.99)*j)+" "+str(rate))
+
+'''unit = 0.1
+scale = 10
 graphics = "▇"
 
 for i in range(1,scale):
@@ -48,6 +66,6 @@ print("graph of "+currency+" exchange rate against EUR from "+start_date+" to "+
 print("-"*100+">")
 
 for k in dic :
-    print(k + " |" + graphics * int(dic[k][0]) + " " + str(dic[k][1]))
+    print(k + " |" + graphics * int(dic[k][0]) + " " + str(dic[k][1]))'''
     
     
