@@ -1,14 +1,13 @@
 import json
-
-f = open("data.json")
-data = json.load(f)
-
+import requests
 
 currency = 'INR'
 start_date = '2019-01-01'
 end_date = '2019-01-31'
 
-
+url="https://api.exchangeratesapi.io/history?start_at="+start_date+"&end_at="+end_date+"&symbols="+currency
+response = requests.get(url)
+data = response.json()
 
 max_rate = 0.00
 min_rate = 10000000
